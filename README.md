@@ -1,6 +1,52 @@
-# So, Someone is Annoying You About Nix
+---
+theme: gaia
+transition: swipe
+paginate: true
+style: |
+  section {
+    font-size: 20px;
+  }
+  /* ⬇️ Mark the image of "1" in every pages as morphable image named as "one" ⬇️ */
+  img[alt="1"] {
+    view-transition-name: one;
+    contain: layout; /* required */
+  }
 
-Sorry!
+  img[alt="2"] {
+    view-transition-name: two;
+    contain: layout; /* required */
+  }
+
+  img[alt="3"] {
+    view-transition-name: three;
+    contain: layout; /* required */
+  }
+  img[alt="4"] {
+    view-transition-name: four;
+    contain: layout; /* required */
+  }
+  img[alt="5"] {
+    view-transition-name: five;
+    contain: layout; /* required */
+  }
+
+  img[alt="6"] {
+    view-transition-name: six;
+    contain: layout; /* required */
+  }
+
+
+  /* Generic image styling for number icons */
+  img:is([alt="1"], [alt="2"], [alt="3"], [alt="4"], [alt="5"], [alt="6"]) {
+    height: 64px;
+    position: relative;
+    top: -0.1em;
+    vertical-align: middle;
+    width: 64px;
+  }
+---
+
+# So, Someone is Annoying You About Nix
 
 ---
 
@@ -14,6 +60,8 @@ Sorry!
 
 ---
 
+<!-- transition: fade -->
+
 # That's a little vague...
 
 Maybe a check list would be cool...
@@ -22,35 +70,28 @@ Maybe a check list would be cool...
 
 # Agenda
 
-- [ ] What Is Nix
-- [ ] Installing Nix
-- [ ] Super Basics of Using Nix
-- [ ] Central Idea of Nix
-- [ ] Basics of Writing Nix
-
-That's way better!
-
----
-
-# Nix is Many Things!
-
-You may have asked, "What is Nix?"
-
-Nix is...
+- ![1](https://icongr.am/material/numeric-1-circle-outline.svg?size=20&color=ff9900) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle-outline.svg?size=20&color=ff9900) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle-outline.svg?size=20&color=ff9900) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=ff9900) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=ff9900) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=ff9900) Basics of NixLang
 
 ---
 
-# Nix is Many Things!
+<!-- transition: swipe -->
 
-## Confusing!
+# ![1](https://icongr.am/material/numeric-1-circle-outline.svg?color=34b233) What is Nix
 
-"Nix" can mean a lot of things!
+## Nix is Many Things!
+
+- Nix is...
 
 ---
 
-# Nix is Many Things!
+# ![1](https://icongr.am/material/numeric-1-circle-outline.svg?color=34b233) What is Nix
 
-## Language
+### Language
 
 Hey kid, you wanna write Haskell _and_ JSON?
 
@@ -93,9 +134,9 @@ buildNpmPackage rec {
 
 ---
 
-# Nix is Many Things!
+# ![1](https://icongr.am/material/numeric-1-circle-outline.svg?color=34b233) What is Nix
 
-# Package Manager
+### Package Manager
 
 Install exact packages
 
@@ -118,9 +159,9 @@ packages = with pkgs; [
 
 ---
 
-# Nix is Many Things!
+# ![1](https://icongr.am/material/numeric-1-circle-outline.svg?color=34b233) What is Nix
 
-# Linux Distribution/Configuration of Same
+### Linux Distribution/Configuration of Same
 
 Control all of your machine with nix!
 
@@ -141,9 +182,9 @@ Control all of your machine with nix!
 
 ---
 
-# Nix is Many Things!
+# ![1](https://icongr.am/material/numeric-1-circle-outline.svg?color=34b233) What is Nix
 
-# Dev Environments
+### Dev Environments
 
 Share your setup with the boys
 
@@ -160,99 +201,90 @@ pkgs.mkShell {
 
 ---
 
-# Nix is Many Things!
+# ![1](https://icongr.am/material/numeric-1-circle-outline.svg?color=34b233) What is Nix
 
-# A ReadOnly File Store!
+### A ReadOnly File Store!
 
 NO TOUCHY!
 
 ```
 ./
 ../
-  xrx4fpia9wp7mmfvriipi7j8qm85g4cm-helix-config.drv
-  xs2xmgd92ysv507645dik7fsfnhncpy2-unpack-zoneinfo_compiled-0.5.1.drv
-  xs5h45l67xc0v5n0hczch7d469nybzir-diff-so-fancy-1.4.4-fish-completions.drv
-  xs7g37asnv7r8rf89fn4a74syalqqsnk-clang-at-least-16-LLVMgold-path.patch.drv
-  xs9pkzjskplffcqh29h84fj09di173r0-tzdata-2024a.drv
-  xsa606vnc5ihnmbr08vdkz2sbd1g2xyh-source.drv
-  xsbsn3zdfhs29xw88q80yz9mp30ddsyl-tasty-1.4.3.tar.gz.drv
-  xscdcn4zykv8cjwmawd5xgpwglw8snzw-add-optional-11-lcdfilter-none-configuration.patch.drv
-  xscxg4hjg2w74wiaq96yc25b4jplab6y-hashbrown-0.12.3.tar.gz
-  xsdpa50q8ikbqb5w9gwyadcr34wp6qs9-trove-classifiers-2023.8.7.tar.gz.drv
-  xsfg8jmzgkv2ijzw4saq1a7iaz6azxwy-serf-1.3.10.tar.bz2.drv
-  xsgbr42mw81sjkkqpxgvd7q985gg6cj6-apple-framework-QuartzCore-11.0.0.drv
-  xshfgc94k1f3i89wj51jjd2vr0lpbi1y-source.drv
-  xsiavfa0ybspkqmglm2xsyck4myipn61-CVE-2023-40305.part-2.patch.drv
-  xsis73vfcg4fswpjz59fmd8697xr2nh0-time-0.1.45.drv
-  xsm8zpiqgbfi2hip02ivq48da8kibldf-async-lock-3.3.0.drv
-  xsmg2h1ymqkhjhkxqvm6ly7qp5mpwmvm-setuptools-check-hook.drv
-  xsms9ajzmb4cfb9r4w2la195mag2s61w-clang-at-least-16-LLVMgold-path.patch.drv
-  xsnl56ldc390v1mr6lkvk5cd847dycbw-llvm-16.0.6.drv
-  xsp2c87zs5x3a7x5xnsqg07yq267inlj-File-ShareDir-1.118.tar.gz.drv
-  xsv0xd2y1frqz7nf0xps63f4q88988cy-FCGI-ProcManager-0.28.tar.gz.drv
-  xswcarhkw8pagcallh59y4dqkp214da4-jmespath-1.0.1.tar.gz.drv
-  xsxjcih2r3n1zgkmhkskddcscya6zcq8-go1.22.2.src.tar.gz.drv
-  xv2xnvf95d63h39z5ma9rc4761w6rwgn-apple-framework-SystemConfiguration-11.0.0.drv
-  xv3kymsqffw3gmxmsjmi5jfs182x8ivq-jsonschema_specifications-2023.7.1.tar.gz.drv
-  xv6dva0i78i0hygwib45g263nmdahlm5-python3.11-virtualenv-20.25.1.drv
+xrx4fpia9wp7mmfvriipi7j8qm85g4cm-helix-config.drv
+xs2xmgd92ysv507645dik7fsfnhncpy2-unpack-zoneinfo_compiled-0.5.1.drv
+xs5h45l67xc0v5n0hczch7d469nybzir-diff-so-fancy-1.4.4-fish-completions.drv
+xs7g37asnv7r8rf89fn4a74syalqqsnk-clang-at-least-16-LLVMgold-path.patch.drv
+xs9pkzjskplffcqh29h84fj09di173r0-tzdata-2024a.drv
+xsa606vnc5ihnmbr08vdkz2sbd1g2xyh-source.drv
+xsbsn3zdfhs29xw88q80yz9mp30ddsyl-tasty-1.4.3.tar.gz.drv
+xsdpa50q8ikbqb5w9gwyadcr34wp6qs9-trove-classifiers-2023.8.7.tar.gz.drv
+xsfg8jmzgkv2ijzw4saq1a7iaz6azxwy-serf-1.3.10.tar.bz2.drv
+xsgbr42mw81sjkkqpxgvd7q985gg6cj6-apple-framework-QuartzCore-11.0.0.drv
+xshfgc94k1f3i89wj51jjd2vr0lpbi1y-source.drv
+xsiavfa0ybspkqmglm2xsyck4myipn61-CVE-2023-40305.part-2.patch.drv
+xsis73vfcg4fswpjz59fmd8697xr2nh0-time-0.1.45.drv
+xsm8zpiqgbfi2hip02ivq48da8kibldf-async-lock-3.3.0.drv
+xsmg2h1ymqkhjhkxqvm6ly7qp5mpwmvm-setuptools-check-hook.drv
+xsms9ajzmb4cfb9r4w2la195mag2s61w-clang-at-least-16-LLVMgold-path.patch.drv
+xsnl56ldc390v1mr6lkvk5cd847dycbw-llvm-16.0.6.drv
+xswcarhkw8pagcallh59y4dqkp214da4-jmespath-1.0.1.tar.gz.drv
+xsxjcih2r3n1zgkmhkskddcscya6zcq8-go1.22.2.src.tar.gz.drv
+xv2xnvf95d63h39z5ma9rc4761w6rwgn-apple-framework-SystemConfiguration-11.0.0.drv
+xv3kymsqffw3gmxmsjmi5jfs182x8ivq-jsonschema_specifications-2023.7.1.tar.gz.drv
+xv6dva0i78i0hygwib45g263nmdahlm5-python3.11-virtualenv-20.25.1.drv
 ```
 
 ---
 
-# A basic diagram
+<!-- transition: fade -->
+
+# ![1](https://icongr.am/material/numeric-1-circle-outline.svg?color=34b233) What is Nix
+
+### A basic diagram
 
 In case it made sense
 
 ```
-~~~graph-easy --as=boxart
-[NixOs] - uses -> [ Nixpkgs ] {label: "Nixpkgs\nmonorepo\nhelper functions";}
-[ HM ] {label: Home manager\nNix config of user programs} - uses -> [ Nixpkgs ]
-[ NixDarwin ] {label: Nix Darwin\nconfiguration of Macos with nix} - uses -> [ Nixpkgs ]
-[NixOs] - can configure -> [ HM ]
-[ Nixpkgs ] - is written in -> [ NixLang ]
-[NixLang] - produces -> [ Derivations]
-~~~
+    uses
+┌────────────────────────────────────────────────┐
+│                                                ∨
+│  ┌─────────────────────────────────┐         ┌──────────────────┐                  ┌─────────────────────────────┐             ┌─────────────┐
+│  │           Nix Darwin            │         │     Nixpkgs      │                  │                             │             │             │
+│  │ configuration of Macos with nix │  uses   │     monorepo     │  is written in   │           NixLang           │  produces   │ Derivations │
+│  │                                 │ ──────> │ helper functions │ ───────────────> │                             │ ──────────> │             │
+│  └─────────────────────────────────┘         └──────────────────┘                  └─────────────────────────────┘             └─────────────┘
+│                                                ∧                  uses
+│                                                └─────────────────────────────────────┐
+│                                                                                      │
+│                                              ┌──────────────────┐                  ┌─────────────────────────────┐
+│                                              │      NixOs       │  can configure   │        Home manager         │
+└───────────────────────────────────────────── │                  │ ───────────────> │ Nix config of user programs │
+                                               └──────────────────┘                  └─────────────────────────────┘
 ```
 
 ---
 
 # Agenda
 
-- [x] What Is Nix
-- [ ] Installing Nix
-- [ ] Super Basics of Using Nix
-- [ ] Central Idea of Nix
-- [ ] Basics of Writing Nix
+- ![1](https://icongr.am/material/numeric-1-circle.svg?size=20&color=34b233) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle-outline.svg?size=20&color=ff9900) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle-outline.svg?size=20&color=ff9900) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=ff9900) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=ff9900) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=ff9900) Basics of NixLang
 
-First Check Mark! Woo!
-
----
-
-# WOAH
-
-That's too many things!
+* First Check Mark! Woo!
+* Woah! That's too many things!
+* Yup! Don't worry about any specifics right now
+* We're gonna start simple and fundamental.
 
 ---
 
-# Yup!
+<!-- transition: swipe -->
 
-Don't worry about all that right now
+# ![2](https://icongr.am/material/numeric-2-circle-outline.svg?size=20&color=34b233) Installing Nix
 
----
-
-# Yup!
-
-Don't worry about all that right now
-
-We're gonna start simple and fundamental.
-
----
-
-# Installation
-
-Either
-
-## Install locally
+### Install locally
 
 Head to [Deteminate Systems](https://github.com/DeterminateSystems/nix-installer)
 
@@ -260,7 +292,9 @@ Head to [Deteminate Systems](https://github.com/DeterminateSystems/nix-installer
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-## Use Cargo
+- But what's that curl-shell doing??
+
+### Use Cargo
 
 ```bash
 cargo install nix-installer
@@ -268,70 +302,58 @@ cargo install nix-installer
 
 ---
 
-# But what's that curl-shell doing??
+# ![2](https://icongr.am/material/numeric-2-circle-outline.svg?size=20&color=34b233) Installing Nix
+
+```bash
+curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
+```
+
+### It Installs
+
+- Nix Daemon: Performs operations on the Nix Store for you.
+
+- Nix Store: A ReadOnly file system that stores what Nix builds
+
+- Nix Command: A set of command line applications that let run nix code and interact with the Nix Store
 
 ---
 
-# But what's that curl-shell doing??
+# ![2](https://icongr.am/material/numeric-2-circle-outline.svg?size=20&color=34b233) Installing Nix
 
-Don't ask questions
+<!-- transition: fade -->
 
----
+### Now you have Nix!
 
-# It Installs
+## Veryify your install
 
-## Nix Daemon
+run
 
-Performs operations on the Nix Store for you.
+```sh
+$ nix shell nixpkgs#hello
+$ hello
+-> Hello, world!
+```
 
----
-
-# It Installs
-
-## Nix Daemon
-
-Performs operations on the Nix Store for you.
-
-## Nix Store
-
-A ReadOnly file system that stores what Nix builds
-
----
-
-# It Installs
-
-## Nix Daemon
-
-Performs operations on the Nix Store for you.
-
-## Nix Store
-
-A ReadOnly file system that stores what Nix builds
-
-## Nix Command
-
-A set of command line applications that let run nix code and interact with the
-Nix Store
+You may have to start a new shell
 
 ---
 
 # Agenda
 
-- [x] What Is Nix
-- [x] Installing Nix
-- [ ] Super Basics of Using Nix
-- [ ] Central Idea of Nix
-- [ ] Basics of Writing Nix
-
-Nice check mark buddy!
-
----
-
-# Getting started
+- ![1](https://icongr.am/material/numeric-1-circle.svg?size=20&color=34b233) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle.svg?size=20&color=34b233) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle-outline.svg?size=20&color=ff9900) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=ff9900) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=ff9900) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=ff9900) Basics of NixLang
 
 Ok! Now you're in! What now?
 
 ---
+
+<!-- transition: swipe -->
+
+# ![3](https://icongr.am/material/numeric-3-circle-outline.svg?size=20&color=34b233) Super Basics of Using Nix
 
 ## Let's build this slide show!
 
@@ -343,15 +365,19 @@ nix run github:zdcthomas/nix-brown-bag#initial
 
 ---
 
-# Woah! That was easy!
+# ![3](https://icongr.am/material/numeric-3-circle-outline.svg?size=20&color=34b233) Super Basics of Using Nix
 
-I know!
+## Woah, That Was Easy!
 
-That's the point!
+- I know!
+
+- That's the point!
 
 ---
 
-# But wait! There's more!
+# ![3](https://icongr.am/material/numeric-3-circle-outline.svg?size=20&color=34b233) Super Basics of Using Nix
+
+## But wait! There's more!
 
 You can also use this repo's developer environment:
 
@@ -359,25 +385,15 @@ You can also use this repo's developer environment:
 nix develop github:zdcthomas/nix-brown-bag
 ```
 
-Note: The URL is the same, except for the package name at the end
+> [ Note ]
+>
+> The URL is the same, except for the package name at the end
 
 ---
 
-# Agenda
+<!-- transition: fade -->
 
-- [x] What Is Nix
-- [x] Installing Nix
-- [x] Super Basics of Using Nix
-- [ ] Central Idea of Nix
-- [ ] Basics of Writing Nix
-
-Another easy check! We're cruisin!
-
----
-
-# Yay!
-
-Practically you can now make good use of Nix that other people wrote!
+# ![3](https://icongr.am/material/numeric-3-circle-outline.svg?size=20&color=34b233) Super Basics of Using Nix
 
 ## How?
 
@@ -390,7 +406,28 @@ Use `nix shell nixpkgs#<your package here>` to temporarily install a package!
 
 ---
 
-# But what did I actually do?
+# Agenda
+
+- ![1](https://icongr.am/material/numeric-1-circle.svg?size=20&color=34b233) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle.svg?size=20&color=34b233) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle.svg?size=20&color=34b233) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=ff9900) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=ff9900) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=ff9900) Basics of NixLang
+
+Another easy check! We're cruisin!
+
+# Yay!
+
+Practically you can now make good use of Nix that other people wrote!
+
+---
+
+<!-- transition: swipe -->
+
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+## But what did I actually do?
 
 Good question!
 
@@ -400,46 +437,45 @@ Let's build up to that answer though.
 
 ---
 
-# Agenda
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
 
-- [x] What Is Nix
-- [x] Installing Nix
-- [x] Super Basics of Using Nix
-- [ ] Central Idea of Nix
-- [ ] Basics of Writing Nix
-
----
-
-# The Point of Nix
+## The Point of Nix
 
 Nix aims to let us build the same software every time given the same inputs.
 
----
-
-# The Point of Nix
-
-Nix boils down to a D.A.G(Directed Acyclic Graph) of "derivations"
+- What do we mean by same?
 
 ---
 
-# The Point of Nix
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
 
-## What is a derivation?
+## Package == Package?
 
-Given:
+Nix assumes that two packages are the same if they have the same:
 
 - build steps
 - known build system
-- all dependencies (which are also all derivations)
-- sealed build environments
-
-A `derivation` should always produce the same output.
+- dependencies
+- "sealed" build environments
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
 
-Using the `nix repl`
+## Derivation
+
+Nix calls this combination of things a `derivation`
+
+- Special NixLang primitive
+- defines a blueprint for an actual artifact to be built
+
+---
+
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### What is a derivation?
+
+Open up the `nix repl`
 
 ```sh
 nix repl nixpkgs
@@ -461,7 +497,9 @@ There's a lot to unpack here...
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### What is a derivation?
 
 ```nix
 derivation {
@@ -482,7 +520,9 @@ derivation
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### What is a derivation?
 
 ```nix
 derivation {
@@ -510,7 +550,9 @@ evaluates to a Nix Store Path:
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### What is a derivation?
 
 ```nix
 derivation {
@@ -532,7 +574,9 @@ But wait!! What's that `$out`?
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### What is a derivation?
 
 ```nix
 derivation {
@@ -549,9 +593,9 @@ path designated for this derivation in the Nix Store
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
 
-## Building a derivation
+### Building a derivation
 
 Now we can actually build the derivation
 
@@ -572,7 +616,9 @@ This derivation produced the following outputs:
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### Building a derivation
 
 We can see all Env Vars passed to the builder, including `$out`!
 
@@ -600,7 +646,9 @@ declare -x system="aarch64-darwin"
 
 ---
 
-# What is a derivation?
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### Building a derivation
 
 And then the output in the Nix Store looks like this
 
@@ -611,7 +659,11 @@ nix-repl> builtins.readFile d
 
 ---
 
-# What is a derivation?
+<!-- transition: fade -->
+
+# ![4](https://icongr.am/material/numeric-4-circle-outline.svg?size=20&color=34b233) What is Nix, Really?
+
+### What is a derivation?
 
 In the Nix Store, a derivation path looks like:
 
@@ -631,21 +683,20 @@ In the Nix Store, a derivation path looks like:
 
 # Agenda
 
-- [x] What Is Nix
-- [x] Installing Nix
-- [x] Super Basics of Using Nix
-- [x] Central Idea of Nix
-- [ ] Basics of Writing Nix
+- ![1](https://icongr.am/material/numeric-1-circle.svg?size=20&color=34b233) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle.svg?size=20&color=34b233) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle.svg?size=20&color=34b233) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle.svg?size=20&color=34b233) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=ff9900) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=ff9900) Basics of NixLang
 
----
-
-# Ok, again, way too much
+## Ok, again, way too much info
 
 Yeah... sorry.
 
 ---
 
-# Ok, again, way too much
+## Ok, again, way too much
 
 But now you have a firm basis so that actually using Nix doesn't feel like weird
 magic.
@@ -665,22 +716,31 @@ symlinks them to somewhere else your system can use them
 Since derivations are so flexible, there's a truly wild number of ways nix is
 used.
 
+# Agenda
+
+- ![1](https://icongr.am/material/numeric-1-circle.svg?size=20&color=34b233) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle.svg?size=20&color=34b233) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle.svg?size=20&color=34b233) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle.svg?size=20&color=34b233) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=ff9900) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=ff9900) Basics of NixLang
+
 ---
 
-# Let's get practical
+# ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=34b233) Flakes!
 
 Since derivations are so flexible, there's a truly wild number of ways nix is
 used.
 
-We're going to focus on...
+## <!-- transition: swipe -->
 
----
+# ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=34b233) Flakes!
 
-# Flakes!
+## Flakes!
 
 Flakes are big functions with defined inputs and outputs.
 
-## Inputs
+### Inputs
 
 Can be
 
@@ -689,7 +749,15 @@ Can be
 - Repos
 - Artifacts from the internet
 
-## Outputs
+---
+
+# ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=34b233) Flakes!
+
+## Flakes!
+
+Flakes are big functions with defined inputs and outputs.
+
+### Outputs
 
 Can Be
 
@@ -702,9 +770,11 @@ Can Be
 
 ---
 
-# Flakes!
+# ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=34b233) Flakes!
 
-## Example
+## Flakes!
+
+### Basic Example
 
 ```nix
 {
@@ -728,7 +798,9 @@ Can Be
 
 ---
 
-# Flakes!
+# ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=34b233) Flakes!
+
+## Flakes!
 
 There's a few commands to interact with the output of Flakes:
 
@@ -742,16 +814,90 @@ There's a few commands to interact with the output of Flakes:
 
 ---
 
-# Agenda
+# ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=34b233) Flakes!
 
-- [x] What Is Nix
-- [x] Installing Nix
-- [x] Super Basics of Using Nix
-- [x] Central Idea of Nix
-- [x] Flakes!
-- [ ] Basics of Writing Nix
+## Flakes!
+
+Flakes are also used for system configuration
+
+```nix
+darwinConfigurations = let
+    workHostName = "Zacharys-MacBook-Pro";
+in {
+
+    "${workHostName}" = let
+    username = "zdcthomas";
+    in
+    darwin.lib.darwinSystem rec {
+        system = "aarch64-darwin";
+        specialArgs = {
+        inherit system username overlays inputs workHostName;
+        };
+        modules = [
+        {nixpkgs.overlays = overlays;}
+        home-manager.darwinModule
+        ./nix/hosts/work/dar_conf.nix
+        ];
+    };
+};
+```
 
 ---
+
+# ![5](https://icongr.am/material/numeric-5-circle-outline.svg?size=20&color=34b233) Flakes!
+
+## Flakes!
+
+You can install/configure programs _and_ system settings
+
+```nix
+defaults = {
+    NSGlobalDomain = {
+        AppleShowAllFiles = true;
+        NSAutomaticCapitalizationEnabled = false;
+        NSAutomaticDashSubstitutionEnabled = false;
+        NSAutomaticPeriodSubstitutionEnabled = false;
+        NSAutomaticQuoteSubstitutionEnabled = false;
+        NSAutomaticSpellingCorrectionEnabled = false;
+        AppleKeyboardUIMode = 3;
+    };
+};
+```
+
+---
+
+# Agenda
+
+# Agenda
+
+- ![1](https://icongr.am/material/numeric-1-circle.svg?size=20&color=34b233) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle.svg?size=20&color=34b233) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle.svg?size=20&color=34b233) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle.svg?size=20&color=34b233) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle.svg?size=20&color=34b233) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=ff9900) Basics of NixLang
+
+---
+
+# ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=34b233) Basics of NixLang
+
+## Attributes!
+
+Nix is all about building Attribute Sets
+
+```nix
+{
+    foo = "foo";
+    bar = 1;
+    baz = [1 2 3];
+};
+```
+
+and passing them to derivations.
+
+---
+
+# ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=34b233) Basics of NixLang
 
 # Packaging
 
@@ -764,29 +910,61 @@ The most common wrapper;
 the concept of `phases` to the build, that let you specify actions to take at
 specific times in the creation of the derivation
 
+```nix
+stdenv.mkDerivation {
+  name = "example-website-content";
+
+  src = fetchFromGitHub {
+    owner = "jekyll";
+    repo = "example";
+    rev = "5eb1b902ca3bda6f4b50d4cfcdc7bc0097bac4b7";
+    sha256 = "1jw35hmgx2gsaj2ad5f9d9ks4yh601wsxwnb17pmb9j02hl3vgdm";
+  };
+
+  installPhase = ''
+    export JEKYLL_ENV=production
+    ${pkgs.jekyll}/bin/jekyll build --destination $out
+  '';
+  # ^ Phase here
+}
+```
+
 ---
 
-# Packaging
+# ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=34b233) Basics of NixLang
 
-Nix has _many_ wrappers around `derivation`.
+# Convenience helpers
 
-## Convenience helpers
+## Writers
 
-### Writers
+```nix
+(
+    writers.writeBashBin "dev_env"
+    ''
+    set -e
 
-Easy to use helpers
+    AWS_PROFILE="kevel-studio-dev"
+    export _EXTRA_PROMPT_STUFF="[DEV ENV]"
 
-writers just take text (and maybe dependencies)
+    ${aws} sso login --profile $AWS_PROFILE
+    AWS_PROFILE=$AWS_PROFILE ${dev_env} --advertiser-api-db ${postgres_url}
+    ''
+)
+```
 
-output runnable packages/data
+- Easy to use
+
+- take text (and maybe dependencies)
+
+- output runnable packages/data
 
 ---
 
-# Packaging
+# ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=34b233) Basics of NixLang
 
-Nix has _many_ wrappers around `derivation`.
+# Convenience helpers
 
-## Language specific helpers
+## Language builders
 
 The program that runs this slideshow is called `slides`.
 
@@ -795,6 +973,12 @@ learning
 
 It uses a helper called `buildGoModule`
 (just mkDerivation with some go specific defaults)
+
+---
+
+<!-- transition: fade -->
+
+# ![6](https://icongr.am/material/numeric-6-circle-outline.svg?size=20&color=34b233) Basics of NixLang
 
 ```nix
 slides = pkgs.buildGoModule rec {
@@ -835,16 +1019,16 @@ slides = pkgs.buildGoModule rec {
 
 # Agenda
 
-- [x] What Is Nix
-- [x] Installing Nix
-- [x] Super Basics of Using Nix
-- [x] Central Idea of Nix
-- [x] Flakes!
-- [x] Basics of Writing Nix
+- ![1](https://icongr.am/material/numeric-1-circle.svg?size=20&color=34b233) What Is Nix
+- ![2](https://icongr.am/material/numeric-2-circle.svg?size=20&color=34b233) Installing Nix
+- ![3](https://icongr.am/material/numeric-3-circle.svg?size=20&color=34b233) Super Basics of Using Nix
+- ![4](https://icongr.am/material/numeric-4-circle.svg?size=20&color=34b233) What is Nix, Really?
+- ![5](https://icongr.am/material/numeric-5-circle.svg?size=20&color=34b233) Flakes!
+- ![6](https://icongr.am/material/numeric-6-circle.svg?size=20&color=34b233) Basics of NixLang
 
 ---
 
-# The End
+# The End!
 
 ## Good resources
 

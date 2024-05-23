@@ -51,38 +51,25 @@
           maintainers = with maintainers; [maaslalani penguwin];
         };
       };
-      initial_slides = ./README.md;
-      initial = (
-        pkgs.writers.writeBashBin "initial"
-        {
-          makeWrapperArgs = [
-            "--prefix"
-            "PATH"
-            ":"
-            (pkgs.lib.makeBinPath [
-              pkgs.graph-easy
-            ])
-          ];
-        }
-        ''
-          ${slides}/bin/slides ${initial_slides}
-        ''
-      );
+      presentation = pkgs.stdenv.mkDerivation {
+        name = "presentation";
+        src = ./.;
+        installPhase = ''
+          ${pkgs.marp-cli}/bin/marp $src/README.md -o $out/presentation.html
+        '';
+      };
     in {
       packages = {
-        initial = initial;
+        inherit presentation;
       };
       devShells = {
         default = pkgs.mkShell {
           packages = [
             slides
-            pkgs.presenterm
+            pkgs.marp-cli
             pkgs.reveal-md
-            pkgs.graph-easy
-            initial
           ];
         };
       };
-      # ...
     });
 }
