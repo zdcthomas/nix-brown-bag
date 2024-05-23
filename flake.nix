@@ -51,7 +51,7 @@
           maintainers = with maintainers; [maaslalani penguwin];
         };
       };
-      initial_slides = ./initial_brown_bag.md;
+      initial_slides = ./README.md;
       initial = (
         pkgs.writers.writeBashBin "initial"
         {
