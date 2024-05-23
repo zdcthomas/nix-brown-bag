@@ -1,16 +1,56 @@
 # So, Someone is Annoying You About Nix
 
-Welcome!
+Sorry!
 
 ---
 
-## Nix is Confusing!
+# What am I going to cover?
+
+- Nix tutorials suck
+- Don't need the language first
+- Trust your gut
+- Don't python package by tomorrow
+- Understand stuff first
+
+---
+
+# That's a little vague...
+
+Maybe a check list would be cool...
+
+---
+
+# Agenda
+
+- [ ] What Is Nix
+- [ ] Installing Nix
+- [ ] Super Basics of Using Nix
+- [ ] Central Idea of Nix
+- [ ] Basics of Writing Nix
+
+That's way better!
+
+---
+
+# Nix is Many Things!
+
+You may have asked, "What is Nix?"
+
+Nix is...
+
+---
+
+# Nix is Many Things!
+
+## Confusing!
 
 "Nix" can mean a lot of things!
 
 ---
 
-# Language
+# Nix is Many Things!
+
+## Language
 
 Hey kid, you wanna write Haskell _and_ JSON?
 
@@ -53,6 +93,8 @@ buildNpmPackage rec {
 
 ---
 
+# Nix is Many Things!
+
 # Package Manager
 
 Install exact packages
@@ -76,7 +118,9 @@ packages = with pkgs; [
 
 ---
 
-# Operating System
+# Nix is Many Things!
+
+# Linux Distribution/Configuration of Same
 
 Control all of your machine with nix!
 
@@ -97,6 +141,8 @@ Control all of your machine with nix!
 
 ---
 
+# Nix is Many Things!
+
 # Dev Environments
 
 Share your setup with the boys
@@ -113,6 +159,8 @@ pkgs.mkShell {
 ```
 
 ---
+
+# Nix is Many Things!
 
 # A ReadOnly File Store!
 
@@ -168,6 +216,18 @@ In case it made sense
 
 ---
 
+# Agenda
+
+- [x] What Is Nix
+- [ ] Installing Nix
+- [ ] Super Basics of Using Nix
+- [ ] Central Idea of Nix
+- [ ] Basics of Writing Nix
+
+First Check Mark! Woo!
+
+---
+
 # WOAH
 
 That's too many things!
@@ -188,29 +248,19 @@ We're gonna start simple and fundamental.
 
 ---
 
-# Yup!
-
-Don't worry about all that right now
-
-We're gonna start simple and fundamental.
-
-We're gonna be practical
-
----
-
 # Installation
 
-Head to [Deteminate Systems](https://github.com/DeterminateSystems/nix-installer)
+Either
 
 ## Install locally
 
-Either
+Head to [Deteminate Systems](https://github.com/DeterminateSystems/nix-installer)
 
 ```bash
 curl --proto '=https' --tlsv1.2 -sSf -L https://install.determinate.systems/nix | sh -s -- install
 ```
 
-or
+## Use Cargo
 
 ```bash
 cargo install nix-installer
@@ -218,11 +268,74 @@ cargo install nix-installer
 
 ---
 
+# But what's that curl-shell doing??
+
+---
+
+# But what's that curl-shell doing??
+
+Don't ask questions
+
+---
+
+# It Installs
+
+## Nix Daemon
+
+Performs operations on the Nix Store for you.
+
+---
+
+# It Installs
+
+## Nix Daemon
+
+Performs operations on the Nix Store for you.
+
+## Nix Store
+
+A ReadOnly file system that stores what Nix builds
+
+---
+
+# It Installs
+
+## Nix Daemon
+
+Performs operations on the Nix Store for you.
+
+## Nix Store
+
+A ReadOnly file system that stores what Nix builds
+
+## Nix Command
+
+A set of command line applications that let run nix code and interact with the
+Nix Store
+
+---
+
+# Agenda
+
+- [x] What Is Nix
+- [x] Installing Nix
+- [ ] Super Basics of Using Nix
+- [ ] Central Idea of Nix
+- [ ] Basics of Writing Nix
+
+Nice check mark buddy!
+
+---
+
 # Getting started
 
 Ok! Now you're in! What now?
 
+---
+
 ## Let's build this slide show!
+
+Run:
 
 ```sh
 nix run github:zdcthomas/nix-brown-bag#initial
@@ -250,6 +363,33 @@ Note: The URL is the same, except for the package name at the end
 
 ---
 
+# Agenda
+
+- [x] What Is Nix
+- [x] Installing Nix
+- [x] Super Basics of Using Nix
+- [ ] Central Idea of Nix
+- [ ] Basics of Writing Nix
+
+Another easy check! We're cruisin!
+
+---
+
+# Yay!
+
+Practically you can now make good use of Nix that other people wrote!
+
+## How?
+
+Just enter into a project that uses Nix and run `nix develop` if you want to use
+the developer shell they set up.
+
+Or
+
+Use `nix shell nixpkgs#<your package here>` to temporarily install a package!
+
+---
+
 # But what did I actually do?
 
 Good question!
@@ -257,6 +397,16 @@ Good question!
 High level, you ran a `package` defined in the `flake` in this repo.
 
 Let's build up to that answer though.
+
+---
+
+# Agenda
+
+- [x] What Is Nix
+- [x] Installing Nix
+- [x] Super Basics of Using Nix
+- [ ] Central Idea of Nix
+- [ ] Basics of Writing Nix
 
 ---
 
@@ -268,7 +418,7 @@ Nix aims to let us build the same software every time given the same inputs.
 
 # The Point of Nix
 
-Nix boils down to a D.A.G of "derivations"
+Nix boils down to a D.A.G(Directed Acyclic Graph) of "derivations"
 
 ---
 
@@ -299,14 +449,12 @@ At their most basic, derivations look like
 
 ```sh
 
-nix-repl> test_derivation = derivation {
+nix-repl> derivation {
     system = builtins.currentSystem;
     builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
     args = ["-c" "declare -xp;echo 'hello world!' > $out"];
     name = "test_package";
 }
-
-nix-repl> «derivation /nix/store/y4a2jx645cmlam6l6bzi5pv5w1fjjg4l-test_derv.drv»
 ```
 
 There's a lot to unpack here...
@@ -315,9 +463,6 @@ There's a lot to unpack here...
 
 # What is a derivation?
 
-The system that a derivation gets built on in one of the things that defines a
-derivation
-
 ```nix
 derivation {
     system = builtins.currentSystem;
@@ -327,6 +472,9 @@ derivation {
 }
 
 ```
+
+The `system` that a derivation gets built on in one of the things that defines a
+derivation
 
 ```nix
     system = builtins.currentSystem;
@@ -346,15 +494,17 @@ derivation {
 
 ```
 
-The builder is the base program used to build the program
+The `builder` is the base program used to build the program
 
 ```nix
     builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
 ```
 
+This:
+
 `${legacyPackages.${builtins.currentSystem}.bash}/bin/bash`
 
-This evaluates to a Nix Store Path, e.g
+evaluates to a Nix Store Path:
 
 `/nix/store/60qp4q78hlg1fsvq4np6iv0gpqrl4v4p-bash-5.2p26/bin/bash`
 
@@ -479,6 +629,16 @@ In the Nix Store, a derivation path looks like:
 
 ---
 
+# Agenda
+
+- [x] What Is Nix
+- [x] Installing Nix
+- [x] Super Basics of Using Nix
+- [x] Central Idea of Nix
+- [ ] Basics of Writing Nix
+
+---
+
 # Ok, again, way too much
 
 Yeah... sorry.
@@ -496,10 +656,102 @@ symlinks them to somewhere else your system can use them
 - put nix store packages into your PATH
 - link them as configuration files
 - create `systemd` specifications
+- push a derivation or package to a cache
 
 ---
 
-# Flake
+# Let's get practical
+
+Since derivations are so flexible, there's a truly wild number of ways nix is
+used.
+
+---
+
+# Let's get practical
+
+Since derivations are so flexible, there's a truly wild number of ways nix is
+used.
+
+We're going to focus on...
+
+---
+
+# Flakes!
+
+Flakes are big functions with defined inputs and outputs.
+
+## Inputs
+
+Can be
+
+- Other Flakes
+- Local Files/Directories
+- Repos
+- Artifacts from the internet
+
+## Outputs
+
+Can Be
+
+- Packages
+- Apps
+- Ways to configure nixos machines
+- Developer shells
+- Flake templates
+- Checks for Ci/Tests
+
+---
+
+# Flakes!
+
+## Example
+
+```nix
+{
+  description = "A very basic flake";
+
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
+  };
+
+  outputs = { self, nixpkgs }: {
+
+    packages.x86_64-linux.default = self.packages.x86_64-linux.hello;
+    devShells.x86_64-linux.default = self.packages.x86_64-linux.mkShell {
+        packages = [
+            self.packages.x86_64-linux.hello
+        ];
+    };
+  };
+}
+```
+
+---
+
+# Flakes!
+
+There's a few commands to interact with the output of Flakes:
+
+- `nix build`: build a derivation or fetch a store path
+- `nix develop`: run a bash shell that provides the build environment of a derivation
+- `nix flake`: manage Nix flakes
+- `nix profile`: manage Nix profiles
+- `nix run`: run a Nix application
+- `nix search`: search for packages
+- `nix shell`: run a shell in which the specified packages are available
+
+---
+
+# Agenda
+
+- [x] What Is Nix
+- [x] Installing Nix
+- [x] Super Basics of Using Nix
+- [x] Central Idea of Nix
+- [x] Flakes!
+- [ ] Basics of Writing Nix
+
+---
 
 The program that runs this slideshow is called `slides`.
 
@@ -540,9 +792,3 @@ slides = pkgs.buildGoModule rec {
     };
 };
 ```
-
----
-
-# Nix Daemon
-
-Performs operations on the Nix Store for you.
