@@ -116,6 +116,8 @@ pkgs.mkShell {
 
 # A ReadOnly File Store!
 
+NO TOUCHY!
+
 ```
 ./
 ../
@@ -150,6 +152,8 @@ pkgs.mkShell {
 ---
 
 # A basic diagram
+
+In case it made sense
 
 ```
 ~~~graph-easy --as=boxart
@@ -216,4 +220,329 @@ cargo install nix-installer
 
 # Getting started
 
+Ok! Now you're in! What now?
 
+## Let's build this slide show!
+
+```sh
+nix run github:zdcthomas/nix-brown-bag#initial
+```
+
+---
+
+# Woah! That was easy!
+
+I know!
+
+That's the point!
+
+---
+
+# But wait! There's more!
+
+You can also use this repo's developer environment:
+
+```sh
+nix develop github:zdcthomas/nix-brown-bag
+```
+
+Note: The URL is the same, except for the package name at the end
+
+---
+
+# But what did I actually do?
+
+Good question!
+
+High level, you ran a `package` defined in the `flake` in this repo.
+
+Let's build up to that answer though.
+
+---
+
+# The Point of Nix
+
+Nix aims to let us build the same software every time given the same inputs.
+
+---
+
+# The Point of Nix
+
+Nix boils down to a D.A.G of "derivations"
+
+---
+
+# The Point of Nix
+
+## What is a derivation?
+
+Given:
+
+- build steps
+- known build system
+- all dependencies (which are also all derivations)
+- sealed build environments
+
+A `derivation` should always produce the same output.
+
+---
+
+# What is a derivation?
+
+Using the `nix repl`
+
+```sh
+nix repl nixpkgs
+```
+
+At their most basic, derivations look like
+
+```sh
+
+nix-repl> test_derivation = derivation {
+    system = builtins.currentSystem;
+    builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
+    args = ["-c" "declare -xp;echo 'hello world!' > $out"];
+    name = "test_package";
+}
+
+nix-repl> «derivation /nix/store/y4a2jx645cmlam6l6bzi5pv5w1fjjg4l-test_derv.drv»
+```
+
+There's a lot to unpack here...
+
+---
+
+# What is a derivation?
+
+The system that a derivation gets built on in one of the things that defines a
+derivation
+
+```nix
+derivation {
+    system = builtins.currentSystem;
+    builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
+    args = ["-c" "declare -xp;echo 'hello world!' > $out"];
+    name = "test_package";
+}
+
+```
+
+```nix
+    system = builtins.currentSystem;
+```
+
+---
+
+# What is a derivation?
+
+```nix
+derivation {
+    system = builtins.currentSystem;
+    builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
+    args = ["-c" "declare -xp;echo 'hello world!' > $out"];
+    name = "test_package";
+}
+
+```
+
+The builder is the base program used to build the program
+
+```nix
+    builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
+```
+
+`${legacyPackages.${builtins.currentSystem}.bash}/bin/bash`
+
+This evaluates to a Nix Store Path, e.g
+
+`/nix/store/60qp4q78hlg1fsvq4np6iv0gpqrl4v4p-bash-5.2p26/bin/bash`
+
+---
+
+# What is a derivation?
+
+```nix
+derivation {
+    system = builtins.currentSystem;
+    builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
+    args = ["-c" "declare -xp;echo 'hello world!' > $out"];
+    name = "test_package";
+}
+
+```
+
+`args` are passed to the builder
+
+```nix
+    args = ["-c" "declare -xp;echo 'hello world!' > $out"];
+```
+
+But wait!! What's that `$out`?
+
+---
+
+# What is a derivation?
+
+```nix
+derivation {
+    system = builtins.currentSystem;
+    builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
+    args = ["-c" "declare -xp;echo 'hello world!' > $out"];
+    name = "test_package";
+}
+
+```
+
+`$out` is a environment variable passed to the builder that points at the output
+path designated for this derivation in the Nix Store
+
+---
+
+# What is a derivation?
+
+## Building a derivation
+
+Now we can actually build the derivation
+
+```nix
+
+nix-repl> d = derivation {
+    system = builtins.currentSystem;
+    builder = "${legacyPackages.${builtins.currentSystem}.bash}/bin/bash";
+    args = ["-c" "declare -xp;echo 'hello world!' > $out"];
+    name = "test_package";
+}
+
+nix-repl> :b d
+
+This derivation produced the following outputs:
+  out -> /nix/store/0z7i1bkp6p4zy29x82khkgbwch9wfgzi-test_derv
+```
+
+---
+
+# What is a derivation?
+
+We can see all Env Vars passed to the builder, including `$out`!
+
+```
+nix-repl> :log d
+declare -x HOME="/homeless-shelter"
+declare -x NIX_BUILD_CORES="0"
+declare -x NIX_BUILD_TOP="/private/tmp/nix-build-test_derv.drv-0"
+declare -x NIX_LOG_FD="2"
+declare -x NIX_STORE="/nix/store"
+declare -x OLDPWD
+declare -x PATH="/path-not-set"
+declare -x PWD="/private/tmp/nix-build-test_derv.drv-0"
+declare -x SHLVL="1"
+declare -x TEMP="/private/tmp/nix-build-test_derv.drv-0"
+declare -x TEMPDIR="/private/tmp/nix-build-test_derv.drv-0"
+declare -x TERM="xterm-256color"
+declare -x TMP="/private/tmp/nix-build-test_derv.drv-0"
+declare -x TMPDIR="/private/tmp/nix-build-test_derv.drv-0"
+declare -x builder="/nix/store/60qp4q78hlg1fsvq4np6iv0gpqrl4v4p-bash-5.2p26/bin/bash"
+declare -x name="test_derv"
+declare -x out="/nix/store/0z7i1bkp6p4zy29x82khkgbwch9wfgzi-test_derv"
+declare -x system="aarch64-darwin"
+```
+
+---
+
+# What is a derivation?
+
+And then the output in the Nix Store looks like this
+
+```
+nix-repl> builtins.readFile d
+"hello world!\n"
+```
+
+---
+
+# What is a derivation?
+
+In the Nix Store, a derivation path looks like:
+
+```
+0z7i1bkp6p4zy29x82khkgbwch9wfgzi-test_derv
+▲                              ▲ ▲       ▲
+└───────────────┬──────────────┘ └───┬───┘
+                │                    │
+           NAR Hash              PACKAGE NAME
+
+```
+
+- `Nar hash`: A special type of hash of the derivations input
+- `Package name`: human readable name
+
+---
+
+# Ok, again, way too much
+
+Yeah... sorry.
+
+---
+
+# Ok, again, way too much
+
+But now you have a firm basis so that actually using Nix doesn't feel like weird
+magic.
+
+All the other Nix use-cases are programs that take outputs from derivations and
+symlinks them to somewhere else your system can use them
+
+- put nix store packages into your PATH
+- link them as configuration files
+- create `systemd` specifications
+
+---
+
+# Flake
+
+The program that runs this slideshow is called `slides`.
+
+It already exists in nixpkgs, but here we've built it from source for fun and
+learning
+
+```nix
+slides = pkgs.buildGoModule rec {
+    pname = "slides";
+    version = "0.9.0";
+
+    src = pkgs.fetchFromGitHub {
+        owner = "maaslalani";
+        repo = "slides";
+        rev = "f0996f65dd17e43ae49859360e5ca465e2609114";
+        sha256 = "sha256-f7c9Gc7GN4xvz7W/Mu5Fq/XjKQ1nou7w8DIZUPv3Zds=";
+    };
+
+    nativeCheckInputs = with pkgs; [
+        bash
+        go
+    ];
+
+    vendorHash = "sha256-oV3UcbOC4y8xWnA5qZGEK/TRdQ4zCeZshgBAs2l+vSY=";
+
+    ldflags = [
+        "-s"
+        "-w"
+        "-X=main.Version=${version}"
+    ];
+
+    meta = with pkgs.lib; {
+        description = "Terminal based presentation tool";
+        homepage = "https://github.com/maaslalani/slides";
+        changelog = "https://github.com/maaslalani/slides/releases/tag/v${version}";
+        license = licenses.mit;
+        maintainers = with maintainers; [maaslalani penguwin];
+    };
+};
+```
+
+---
+
+# Nix Daemon
+
+Performs operations on the Nix Store for you.
