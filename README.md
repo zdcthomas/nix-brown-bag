@@ -753,10 +753,48 @@ There's a few commands to interact with the output of Flakes:
 
 ---
 
+# Packaging
+
+Nix has _many_ wrappers around `derivation`.
+
+## MkDerivation
+
+The most common wrapper;
+[mkderivation](https://blog.ielliott.io/nix-docs/mkDerivation.html) introduces
+the concept of `phases` to the build, that let you specify actions to take at
+specific times in the creation of the derivation
+
+---
+
+# Packaging
+
+Nix has _many_ wrappers around `derivation`.
+
+## Convenience helpers
+
+### Writers
+
+Easy to use helpers
+
+writers just take text (and maybe dependencies)
+
+output runnable packages/data
+
+---
+
+# Packaging
+
+Nix has _many_ wrappers around `derivation`.
+
+## Language specific helpers
+
 The program that runs this slideshow is called `slides`.
 
 It already exists in nixpkgs, but here we've built it from source for fun and
 learning
+
+It uses a helper called `buildGoModule`
+(just mkDerivation with some go specific defaults)
 
 ```nix
 slides = pkgs.buildGoModule rec {
@@ -792,3 +830,26 @@ slides = pkgs.buildGoModule rec {
     };
 };
 ```
+
+---
+
+# Agenda
+
+- [x] What Is Nix
+- [x] Installing Nix
+- [x] Super Basics of Using Nix
+- [x] Central Idea of Nix
+- [x] Flakes!
+- [x] Basics of Writing Nix
+
+---
+
+# The End
+
+## Good resources
+
+- [nix pills](https://nixos.org/guides/nix-pills/)
+- [zero to nix](https://zero-to-nix.com/)
+- [nix wiki](https://nixos.wiki/wiki/Main_Page)
+
+## What would be helpful to do next?
